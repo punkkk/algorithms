@@ -1,0 +1,52 @@
+{
+  "name": "ts-template",
+  "version": "1.0.0",
+  "description": "TS template",
+  "main": "build/app.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node build/app.js",
+    "start:watch": "nodemon",
+    "lint": "tslint -c tslint.json -p tsconfig.json -t codeFrame '{src,test}/**/*.ts'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "template",
+    "Typescript",
+    "node",
+    "ts",
+    "sample"
+  ],
+  "author": "Kozlov Viktor",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "10.12.15",
+    "husky": "1.2.1",
+    "lint-staged": "8.1.0",
+    "nodemon": "1.18.9",
+    "prettier": "1.15.3",
+    "ts-node": "7.0.1",
+    "tslint": "5.11.0",
+    "tslint-config-prettier": "1.17.0",
+    "typescript": "3.2.2",
+    "typescript-tslint-plugin": "0.2.1"
+  },
+  "dependencies": {
+    "source-map-support": "0.5.9"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --config .prettierrc --write",
+      "tslint -c tslint.json --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "post-checkout": "npm",
+      "post-merge": "npm",
+      "pre-commit": "lint-staged"
+    }
+  }
+}
