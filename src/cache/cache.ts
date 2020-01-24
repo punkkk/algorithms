@@ -2,6 +2,7 @@ import NodeCache from "node-cache";
 
 import {ICache, ISeconds} from "./types";
 
+// todo make cache as a decorator
 export class Cache <T> implements ICache <T> {
   private cache: NodeCache;
   private cacheTime: ISeconds;
