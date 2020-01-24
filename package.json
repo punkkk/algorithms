@@ -21,6 +21,7 @@
   "author": "Kozlov Viktor",
   "license": "MIT",
   "devDependencies": {
+    "@types/lodash": "4.14.149",
     "@types/node": "13.5.0",
     "husky": "4.2.1",
     "lint-staged": "10.0.2",
@@ -33,6 +34,7 @@
     "typescript-tslint-plugin": "0.5.5"
   },
   "dependencies": {
+    "lodash": "4.17.15",
     "node-cache": "5.1.0",
     "source-map-support": "0.5.16"
   },
