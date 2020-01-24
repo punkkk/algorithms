@@ -33,6 +33,7 @@
     "typescript-tslint-plugin": "0.5.5"
   },
   "dependencies": {
+    "node-cache": "5.1.0",
     "source-map-support": "0.5.16"
   },
   "lint-staged": {
