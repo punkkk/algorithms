@@ -2,12 +2,12 @@ import _ from 'lodash';
 
 import {ISorter} from "./types";
 
-export class MergeSort implements ISorter<number> {
-  public sort(array: number[], length: number) {
+export class MergeSort<T> implements ISorter<T> {
+  public sort(array: T[], length: number) {
     return this.subSort(array, length);
   }
 
-  private subSort (array: number[], length: number): number[] {
+  private subSort (array: T[], length: number): T[] {
     if (length === 0 || length === 1) {
       return array;
     }
@@ -20,8 +20,8 @@ export class MergeSort implements ISorter<number> {
     return this.merge(sortedLeft, sortedRight, length);
   }
 
-  private merge (a: number[], b: number[], n: number): number[] {
-    const result: number[] = [];
+  private merge (a: T[], b: T[], n: number): T[] {
+    const result: T[] = [];
 
     let aIterator = 0;
     let bIterator = 0;
