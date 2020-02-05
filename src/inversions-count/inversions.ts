@@ -2,38 +2,36 @@ import _ from "lodash";
 import {IInversionsCounter} from "./types";
 
 export class Inversions<T> implements IInversionsCounter<T> {
-  private inversionsCount: number;
-
-  constructor() {
-    this.inversionsCount = 0;
-  }
-
   public count(array: T[], length: number) {
-    this.inversionsCount = 0;
+    const {inversionsCount} = this.subSort(array, length);
 
-    this.subSort(array, length);
-
-    return this.inversionsCount;
+    return inversionsCount;
   }
 
-  private subSort(array: T[], length: number): T[] {
+  private subSort(array: T[], length: number): {result: T[]; inversionsCount: number} {
     if (length === 0 || length === 1) {
-      return array;
+      return {result: array, inversionsCount: 0};
     }
 
     const left = _.take(array, Math.floor(length / 2));
     const right = _.takeRight(array, Math.ceil(length / 2));
-    const sortedLeft = this.subSort(left, left.length);
-    const sortedRight = this.subSort(right, right.length);
+    const {result: leftResult, inversionsCount: inversionsCountLeft} = this.subSort(left, left.length);
+    const {result: rightResult, inversionsCount: inversionsCountRight} = this.subSort(right, right.length);
 
-    return this.merge(sortedLeft, sortedRight, length);
+    const {result, inversionsCount} = this.merge(leftResult, rightResult, length);
+
+    return {
+      result,
+      inversionsCount: inversionsCountLeft + inversionsCountRight + inversionsCount,
+    };
   }
 
-  private merge(a: T[], b: T[], n: number): T[] {
+  private merge(a: T[], b: T[], n: number): {result: T[]; inversionsCount: number} {
     const result: T[] = [];
 
     let aIterator = 0;
     let bIterator = 0;
+    let inversionsCount = 0;
 
     for (let k = 0; k < n; k++) {
       const aElement = a[aIterator];
@@ -45,10 +43,10 @@ export class Inversions<T> implements IInversionsCounter<T> {
       } else {
         result.push(bElement);
         bIterator += 1;
-        this.inversionsCount += a.length - aIterator;
+        inversionsCount += a.length - aIterator;
       }
     }
 
-    return result;
+    return {result, inversionsCount};
   }
 }
