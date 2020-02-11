@@ -1,27 +1,20 @@
-import NodeCache from "node-cache";
 import casual from "casual";
 
 import {Cache} from "../../src/cache";
+import {mockNodeCache} from "./mocks";
+
 import Mock = jest.Mock;
 
 jest.mock("node-cache");
 
 describe("Cache", () => {
   const DEFAULT_CACHE_TIME = 10;
+
   let getMock: Mock;
   let setMock: Mock;
 
   beforeEach(() => {
-    getMock = jest.fn();
-    setMock = jest.fn();
-    // @ts-ignore
-    NodeCache.mockImplementation(() => {
-      return {
-        cacheTime: DEFAULT_CACHE_TIME,
-        get: getMock,
-        set: setMock,
-      };
-    });
+    ({get: getMock, set: setMock} = mockNodeCache());
   });
 
   it("get", () => {
