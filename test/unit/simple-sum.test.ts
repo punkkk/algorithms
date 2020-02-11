@@ -35,13 +35,21 @@ describe("SimpleSum", () => {
       simpleSum = new SimpleSum({cache: cache as ICache<string>});
     });
 
+    it("cache setting", () => {
+      const x = casual.integer(0, 10e5);
+      const y = casual.integer(0, 10e5);
+
+      const sum = simpleSum.sum(String(x), String(y));
+      expect(cache.get).toHaveBeenCalled();
+      expect(cache.set).toHaveBeenCalledWith(`${x}${y}`, sum);
+    });
+
     it("little numbers", () => {
       const x = casual.integer(0, 10e3);
       const y = casual.integer(10e3, 10e5);
 
       const sum = simpleSum.sum(String(x), String(y));
       expect(sum).toBe(String(x + y));
-      expect(cache.get).toHaveBeenCalled();
     });
 
     it("with guaranteed co", () => {
@@ -50,7 +58,6 @@ describe("SimpleSum", () => {
 
       const sum = simpleSum.sum(String(x), String(y));
       expect(sum).toBe(String(x + y));
-      expect(cache.get).toHaveBeenCalled();
     });
 
     it("large numbers", () => {
@@ -59,7 +66,6 @@ describe("SimpleSum", () => {
 
       const sum = simpleSum.sum(x, y);
       expect(sum).toBe("5859874482048838473822930854632165381954416493075065395941912219");
-      expect(cache.get).toHaveBeenCalled();
     });
   });
 });
