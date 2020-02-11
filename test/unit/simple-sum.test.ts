@@ -41,6 +41,7 @@ describe("SimpleSum", () => {
 
       const sum = simpleSum.sum(String(x), String(y));
       expect(sum).toBe(String(x + y));
+      expect(cache.get).toHaveBeenCalled();
     });
 
     it("with guaranteed co", () => {
@@ -49,6 +50,7 @@ describe("SimpleSum", () => {
 
       const sum = simpleSum.sum(String(x), String(y));
       expect(sum).toBe(String(x + y));
+      expect(cache.get).toHaveBeenCalled();
     });
 
     it("large numbers", () => {
@@ -57,6 +59,7 @@ describe("SimpleSum", () => {
 
       const sum = simpleSum.sum(x, y);
       expect(sum).toBe("5859874482048838473822930854632165381954416493075065395941912219");
+      expect(cache.get).toHaveBeenCalled();
     });
   });
 });
