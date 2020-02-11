@@ -13,21 +13,28 @@ export class SimpleSum implements IAdder {
   }
 
   sum(x: string, y: string) {
-    const cached = this.cache.get(`${x}${y}`);
+    const key = `${x}${y}`;
+    const cached = this.cache.get(key);
 
     if (cached) {
       return cached;
     }
 
     const result = [];
-    const reversedA = x.split('').reverse().join('');
-    const reversedB = y.split('').reverse().join('');
+    const reversedA = x
+      .split("")
+      .reverse()
+      .join("");
+    const reversedB = y
+      .split("")
+      .reverse()
+      .join("");
 
     let co = 0;
     const longest = reversedA.length > reversedB.length ? reversedA.length : reversedB.length;
 
     for (let i = 0; i < longest; i++) {
-      const sum = parseInt(reversedA[i] || '0', 10) + parseInt(reversedB[i] || '0', 10) + co;
+      const sum = parseInt(reversedA[i] || "0", 10) + parseInt(reversedB[i] || "0", 10) + co;
 
       if (sum >= 10) {
         result.push(sum - 10);
@@ -39,9 +46,12 @@ export class SimpleSum implements IAdder {
     }
 
     if (co !== 0) {
-      result.push(co)
+      result.push(co);
     }
 
-    return result.reverse().join('');
+    const realResult = result.reverse().join("");
+    this.cache.set(key, realResult);
+
+    return realResult;
   }
 }
