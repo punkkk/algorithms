@@ -1,10 +1,11 @@
 /* tslint:disable:no-console */
 import {MergeSort} from "./sort";
-import {Inversions} from "./inversions-count";
 import {firstAssignment} from "./weeks";
+import {Inversions, secondAssignment} from "./weeks/week-2";
 
 const main = async () => {
   await firstAssignment.do();
+  await secondAssignment.do();
 
   // todo move in test
   const mergeSort = new MergeSort<number>();
