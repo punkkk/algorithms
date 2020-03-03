@@ -1,9 +1,7 @@
 import casual from "casual";
 
 import {stubInstance} from "./helpers";
-import {Cache, ICache} from "../../src/cache";
-import {SimpleSum} from "../../src/multiplication/simple-sum";
-import {SimpleMultiplier} from "../../src/multiplication/simple-multiplier";
+import {Cache, ICache, SimpleSum, SimpleMultiplier} from "../../src/weeks/week-1";
 
 describe("SimpleMultiplier", () => {
   describe("with cached value", () => {

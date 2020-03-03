@@ -1,7 +1,7 @@
-import {Cache} from "../../cache";
-import {SimpleSum} from "../../multiplication/simple-sum";
-import {SimpleMultiplier} from "../../multiplication/simple-multiplier";
 import {Assignment} from "../utils";
+import {Cache} from "./cache";
+import {SimpleSum} from "./multiplication/simple-sum";
+import {SimpleMultiplier} from "./multiplication/simple-multiplier";
 
 const assignmentFn = () => {
   const sumCache = new Cache<string>({cacheTime: 10});

@@ -1,7 +1,7 @@
 /* tslint:disable:no-console */
 import {MergeSort} from "./sort";
 import {Inversions} from "./inversions-count";
-import {firstAssignment} from "./assignments";
+import {firstAssignment} from "./weeks";
 
 const main = async () => {
   await firstAssignment.do();

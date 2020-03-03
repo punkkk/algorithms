@@ -1,8 +1,5 @@
 import casual from "casual";
-
-import {Cache} from "../../src/cache";
-import {SimpleSum} from "../../src/multiplication/simple-sum";
-import {SimpleMultiplier} from "../../src/multiplication/simple-multiplier";
+import {SimpleMultiplier, SimpleSum, Cache} from "../../src/weeks/week-1";
 
 describe("SimpleMultiplier", () => {
   it("multiply small numbers", () => {

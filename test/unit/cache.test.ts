@@ -1,9 +1,9 @@
 import casual from "casual";
 
-import {Cache} from "../../src/cache";
 import {mockNodeCache} from "./mocks";
 
 import Mock = jest.Mock;
+import {Cache} from "../../src/weeks/week-1/cache";
 
 jest.mock("node-cache");
 
