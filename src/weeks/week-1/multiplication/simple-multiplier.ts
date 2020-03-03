@@ -48,7 +48,7 @@ export class SimpleMultiplier implements IMultiplier {
       subProducts.push(currentSubProduct.reverse());
     }
 
-    const result = subProducts.reduce((acc, subProduct) => this.adder.sum(acc, subProduct.join('')), '0');
+    const result = subProducts.reduce((acc, subProduct) => this.adder.sum(acc, subProduct.join("")), "0");
 
     this.cache.set(key, result);
 

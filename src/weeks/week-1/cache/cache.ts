@@ -3,16 +3,16 @@ import NodeCache from "node-cache";
 import {ICache, ISeconds} from "./types";
 
 // todo make cache as a decorator
-export class Cache <T> implements ICache <T> {
+export class Cache<T> implements ICache<T> {
   private cache: NodeCache;
   private cacheTime: ISeconds;
 
-  constructor ({cacheTime = 0}) {
+  constructor({cacheTime = 0}) {
     this.cache = new NodeCache();
     this.cacheTime = cacheTime;
   }
 
-  get(key: string)  {
+  get(key: string) {
     return this.cache.get<T>(key);
   }
 
