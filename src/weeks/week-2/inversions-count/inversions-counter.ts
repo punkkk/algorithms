@@ -1,7 +1,7 @@
 import _ from "lodash";
 import {IInversionsCounter} from "./types";
 
-export class Inversions<T> implements IInversionsCounter<T> {
+export class InversionsCounter<T> implements IInversionsCounter<T> {
   public count(array: T[], length: number) {
     const {inversionsCount} = this.subSort(array, length);
 
