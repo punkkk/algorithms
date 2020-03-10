@@ -2,10 +2,10 @@ import fs from "fs";
 import * as path from "path";
 
 import {Assignment} from "../utils";
-import {Inversions} from "./inversions-count";
+import {InversionsCounter} from "./inversions-count";
 
 const assignmentFn = () => {
-  const inversion = new Inversions<number>();
+  const inversion = new InversionsCounter<number>();
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-2.txt"));
 
   const array = assignmentFile
