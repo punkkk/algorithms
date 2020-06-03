@@ -2,6 +2,7 @@
 import {MergeSort} from "./sort";
 import {firstAssignment} from "./weeks";
 import {InversionsCounter, secondAssignment} from "./weeks/week-2";
+import {SecondMax} from "./optional";
 
 const main = async () => {
   await firstAssignment.do();
@@ -16,6 +17,9 @@ const main = async () => {
 
   console.log(inversion.count([1, 3, 5, 2, 4, 6], 6));
   console.log(inversion.count([6, 5, 4, 3, 2, 1], 6)); // (n * ( n - 1 )) / 2
+
+  const secondMax = new SecondMax();
+  console.log(secondMax.find([9, 10, 5, 4, 3, 6, 7, 2]));
 
   process.exit(0);
 };

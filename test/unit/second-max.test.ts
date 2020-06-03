@@ -13,16 +13,6 @@ const randomExcept = (x: number, max: number): number => {
 };
 
 describe("SecondMax", () => {
-  it("Should accept only array with even length", () => {
-    const numbers = new Array(getLength() + 1).fill("").map(casual.integer);
-
-    const secondMax = new SecondMax();
-
-    expect(() => {
-      secondMax.find(numbers);
-    }).toThrow("Wrong");
-  });
-
   it("should find second biggest number", () => {
     const secondMax = new SecondMax();
     const length = getLength();
