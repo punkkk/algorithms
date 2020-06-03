@@ -1,26 +1,26 @@
 /**
- * Only x^2  input length, need to find second max for n + log2(n) - 2 comparisons
+ * Only x^2  input length, need to find second max for n + log(n) - 2 comparisons
  */
 export class SecondMax {
   find(numbers: number[]): number {
-    let max = numbers[0];
-    let secondMax: number = Number.MIN_SAFE_INTEGER;
-
-    for (let i = 1; i < numbers.length; i++) {
-      const current = numbers[i];
-
-      if (current >= max) {
-        secondMax = max;
-        max = current;
-
-        continue;
-      }
-
-      if (current >= secondMax) {
-        secondMax = current;
-      }
-    }
+    const [, comparedTo] = this.findMax(numbers);
+    const [secondMax] = this.findMax(comparedTo);
 
     return secondMax;
+  }
+
+  findMax(numbers: number[]): [number, number[]] {
+    if (numbers.length === 1) {
+      return [numbers[0], []];
+    }
+
+    const middleIndex = numbers.length / 2;
+
+    const [leftHighest, leftComparedTo] = this.findMax(numbers.slice(0, middleIndex));
+    const [rightHighest, rightComparedTo] = this.findMax(numbers.slice(middleIndex, numbers.length));
+
+    return leftHighest > rightHighest
+      ? [leftHighest, leftComparedTo.concat(rightHighest)]
+      : [rightHighest, rightComparedTo.concat(leftHighest)];
   }
 }
