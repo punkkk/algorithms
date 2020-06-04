@@ -3,6 +3,7 @@ import {MergeSort} from "./sort";
 import {firstAssignment} from "./weeks";
 import {InversionsCounter, secondAssignment} from "./weeks/week-2";
 import {SecondMax} from "./optional";
+import {Quicksort} from "./weeks/week-3/quicksort";
 
 const main = async () => {
   await firstAssignment.do();
@@ -20,6 +21,9 @@ const main = async () => {
 
   const secondMax = new SecondMax();
   console.log(secondMax.find([9, 10, 5, 4, 3, 6, 7, 2]));
+
+  const quicksort = new Quicksort();
+  console.log(quicksort.sort([3, 8, 2, 5, 1, 4, 7, 6]));
 
   process.exit(0);
 };
