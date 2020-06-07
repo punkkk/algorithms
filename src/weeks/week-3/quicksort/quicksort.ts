@@ -2,7 +2,13 @@ export class Quicksort {
   // todo make it clear
   private comparisons: number = 0;
 
-  sort(array: number[]): number[] {
+  sort(array: number[]) {
+    // i'm too lazy to do it better
+    this.comparisons = 0;
+
+    return this.doSort(array);
+  }
+  doSort(array: number[]): number[] {
     if (array.length <= 1) {
       return array;
     }
@@ -10,9 +16,9 @@ export class Quicksort {
     const pivot = array[0];
     const [left, right] = this.partition(array, 0, array.length);
 
-    return this.sort(left)
+    return this.doSort(left)
       .concat([pivot])
-      .concat(this.sort(right));
+      .concat(this.doSort(right));
   }
 
   partition(array: number[], left: number, right: number) {
