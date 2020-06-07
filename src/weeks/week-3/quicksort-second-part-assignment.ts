@@ -3,10 +3,10 @@ import * as path from "path";
 
 import {Assignment} from "../utils";
 import {Quicksort} from "./quicksort";
-import {FirstElementPivotStrategy} from "./quicksort/first-element-pivot-strategy";
+import {LastElementPivotStrategy} from "./quicksort/last-element-pivot-strategy";
 
 const assignmentFn = () => {
-  const pivotStrategy = new FirstElementPivotStrategy();
+  const pivotStrategy = new LastElementPivotStrategy();
   const quicksort = new Quicksort({pivotStrategy});
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-3.txt"));
 
@@ -22,6 +22,6 @@ const assignmentFn = () => {
 };
 
 export const quicksortFirstPartAssignment = new Assignment(
-  "QUICKSORT COMPARISONS WITH FIRST ELEMENT AS A PIVOT",
+  "QUICKSORT COMPARISONS WITH LAST ELEMENT AS A PIVOT",
   assignmentFn,
 );
