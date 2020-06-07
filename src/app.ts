@@ -3,12 +3,18 @@ import {MergeSort} from "./sort";
 import {firstAssignment} from "./weeks";
 import {InversionsCounter, secondAssignment} from "./weeks/week-2";
 import {SecondMax} from "./optional";
-import {quicksortFirstPartAssignment} from "./weeks/week-3";
+import {
+  quicksortFirstPartAssignment,
+  quicksortSecondPartAssignment,
+  quicksortThirdPartAssignment,
+} from "./weeks/week-3";
 
 const main = async () => {
   await firstAssignment.do();
   await secondAssignment.do();
   await quicksortFirstPartAssignment.do();
+  await quicksortSecondPartAssignment.do();
+  await quicksortThirdPartAssignment.do();
 
   // todo move in test
   const mergeSort = new MergeSort<number>();

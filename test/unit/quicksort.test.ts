@@ -1,9 +1,13 @@
 import casual from "casual";
-import {Quicksort} from "../../src/weeks/week-3/quicksort";
+import {MedianOfThreePivotStrategy, Quicksort} from "../../src/weeks/week-3/quicksort";
 import {FirstElementPivotStrategy, LastElementPivotStrategy} from "../../src/weeks/week-3/quicksort";
 
 describe("Qucksort", () => {
-  const pivotStrategies = [new FirstElementPivotStrategy(), new LastElementPivotStrategy()];
+  const pivotStrategies = [
+    new FirstElementPivotStrategy(),
+    new LastElementPivotStrategy(),
+    new MedianOfThreePivotStrategy(),
+  ];
 
   for (const pivotStrategy of pivotStrategies) {
     describe(`Strategy: ${pivotStrategy.constructor.name}`, () => {
