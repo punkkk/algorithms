@@ -29,6 +29,8 @@ export class Quicksort {
 
     const [left, right] = this.partition(array, index, 0, array.length);
 
+    this.comparisons += array.length - 1;
+
     return this.doSort(left)
       .concat([value])
       .concat(this.doSort(right));
@@ -45,7 +47,6 @@ export class Quicksort {
 
     for (let j = left + 1; j < right; j++) {
       if (array[j] < pivot) {
-        this.comparisons += 1;
         [array[i], array[j]] = [array[j], array[i]];
 
         i += 1;
