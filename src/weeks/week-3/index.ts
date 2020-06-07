@@ -1,2 +1,2 @@
 export * from "./quicksort";
-export * from "./quicksort-comparisons-assignment-first-element-as-pivot";
+export * from "./quicksort-first-part-assignment";
