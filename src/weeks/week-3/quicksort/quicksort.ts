@@ -1,47 +1,64 @@
+import {IPivotStrategy} from "./types";
+
+interface IQuicksortDependencies {
+  pivotStrategy: IPivotStrategy;
+}
+
 export class Quicksort {
-  sort(array: number[], left = 0, right = array.length - 1): number[] {
-    if (array.length === 1) {
+  // todo make it clear
+  private comparisons: number = 0;
+  private pivotStrategy: IPivotStrategy;
+
+  constructor(dependencies: IQuicksortDependencies) {
+    this.pivotStrategy = dependencies.pivotStrategy;
+  }
+
+  sort(array: number[]) {
+    // i'm too lazy to do it better
+    this.comparisons = 0;
+
+    return this.doSort(array);
+  }
+
+  doSort(array: number[]): number[] {
+    if (array.length <= 1) {
       return array;
     }
 
-    const p = this.partition(array, left, right);
+    const {value, index} = this.pivotStrategy.get(array);
 
-    if (left < p - 1) {
-      this.sort(array, left, p - 1);
-    }
+    const [left, right] = this.partition(array, index, 0, array.length);
 
-    if (p < right) {
-      this.sort(array, p, right);
-    }
+    this.comparisons += array.length - 1;
 
-    return array;
+    return this.doSort(left)
+      .concat([value])
+      .concat(this.doSort(right));
   }
 
-  partition(array: number[], left: number, right: number) {
-    const pivot = array[Math.floor(left + (right - left) / 2)];
+  partition(array: number[], pivotIndex: number, left: number, right: number) {
+    const pivot = array[pivotIndex];
 
-    let i = left;
-    let j = right;
+    if (pivotIndex !== left) {
+      [array[left], array[pivotIndex]] = [array[pivotIndex], array[left]];
+    }
 
-    while (i <= j) {
-      while (array[i] < pivot) {
+    let i = left + 1;
+
+    for (let j = left + 1; j < right; j++) {
+      if (array[j] < pivot) {
+        [array[i], array[j]] = [array[j], array[i]];
+
         i += 1;
-      }
-
-      while (array[j] > pivot) {
-        j -= 1;
-      }
-
-      if (i <= j) {
-        const temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-
-        i++;
-        j--;
       }
     }
 
-    return i;
+    [array[i - 1], array[left]] = [array[left], array[i - 1]];
+
+    return [array.slice(left, i - 1), array.slice(i, right)];
+  }
+
+  getComparisons() {
+    return this.comparisons;
   }
 }
