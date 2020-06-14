@@ -22,7 +22,7 @@ export class AssignmentLogger {
 
   result(result: any) {
     console.log(_.padEnd(`${this.name} RESULT:`, SEPARATOR_LENGTH, PADDING_CHAR));
-    console.log(_.padEnd(result, SEPARATOR_LENGTH, PADDING_CHAR));
+    console.table(result);
   }
 
   end() {
