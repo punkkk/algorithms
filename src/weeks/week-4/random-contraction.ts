@@ -7,7 +7,7 @@ export class RandomContraction {
     const verticesLabels = Array.from(this.vertices.keys());
     const vertex = verticesLabels[_.random(0, verticesLabels.length - 1)];
 
-    const adjacentVertices = this.vertices.get(verticesLabels[vertex])!;
+    const adjacentVertices = this.vertices.get(vertex)!;
     const vertexToMerge = adjacentVertices[_.random(0, adjacentVertices.length - 1)];
     const verticesToDeleteMergedEdge = this.vertices.get(vertexToMerge)!;
 
@@ -28,7 +28,7 @@ export class RandomContraction {
     this.vertices.set(vertex, newEdges);
   }
 
-  getCut() {
+  getCut(): Map<number, number[]> {
     for (; this.vertices.size > 2; ) {
       this.deleteRandomEdge();
     }
