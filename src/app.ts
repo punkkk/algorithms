@@ -1,13 +1,15 @@
 /* tslint:disable:no-console */
 import {MergeSort} from "./sort";
-import {firstAssignment} from "./weeks";
-import {InversionsCounter, secondAssignment} from "./weeks/week-2";
-import {SecondMax} from "./optional";
 import {
+  firstAssignment,
+  fourthWeekAssignment,
+  InversionsCounter,
+  secondAssignment,
   quicksortFirstPartAssignment,
   quicksortSecondPartAssignment,
   quicksortThirdPartAssignment,
-} from "./weeks/week-3";
+} from "./weeks";
+import {SecondMax} from "./optional";
 
 const main = async () => {
   await firstAssignment.do();
@@ -15,6 +17,7 @@ const main = async () => {
   await quicksortFirstPartAssignment.do();
   await quicksortSecondPartAssignment.do();
   await quicksortThirdPartAssignment.do();
+  await fourthWeekAssignment.do();
 
   // todo move in test
   const mergeSort = new MergeSort<number>();
