@@ -61,7 +61,7 @@ export class DfsSccs {
         this.leaderNode = i;
         this.dfs(graph, i);
 
-        this.componentSizes.push(this.sizeOfComponent === 1 ? 0 : this.sizeOfComponent);
+        this.componentSizes.push(this.sizeOfComponent);
       }
     }
   }

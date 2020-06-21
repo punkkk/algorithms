@@ -23,14 +23,14 @@ const assignmentFn = () => {
     ).map(([key, value]) => [Number(key), value]),
   );
 
-  for (let i = 0; i < 875714; i++) {
+  for (let i = 1; i <= 875715; i++) {
     if (!vertices.has(i)) {
       vertices.set(i, []);
     }
   }
 
   const dfsSccs = new DfsSccs(vertices);
-  return dfsSccs.calculateTopFiveOfSccs();
+  return dfsSccs.calculateTopFiveOfSccs().join(",");
 };
 
 export const fifthWeekAssignment = new Assignment("SCCs of the graph", assignmentFn);
