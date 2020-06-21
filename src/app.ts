@@ -8,6 +8,7 @@ import {
   quicksortFirstPartAssignment,
   quicksortSecondPartAssignment,
   quicksortThirdPartAssignment,
+  fifthWeekAssignment,
 } from "./weeks";
 import {SecondMax} from "./optional";
 
@@ -18,6 +19,7 @@ const main = async () => {
   await quicksortSecondPartAssignment.do();
   await quicksortThirdPartAssignment.do();
   await fourthWeekAssignment.do();
+  await fifthWeekAssignment.do();
 
   // todo move in test
   const mergeSort = new MergeSort<number>();
