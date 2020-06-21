@@ -15,7 +15,7 @@ export class DfsSccs {
   constructor(vertices: Map<number, number[]>) {
     this.vertices = vertices;
     this.reversedVertices = this.reverseVertices(new Map(vertices));
-    this.n = vertices.size - 1;
+    this.n = vertices.size;
   }
 
   getReversed() {
@@ -61,24 +61,40 @@ export class DfsSccs {
         this.leaderNode = i;
         this.dfs(graph, i);
 
-        this.componentSizes.push(this.sizeOfComponent);
+        this.componentSizes.push(this.sizeOfComponent === 1 ? 0 : this.sizeOfComponent);
       }
     }
   }
 
   dfs(graph: Map<number, number[]>, vertex: number) {
-    this.exploredVertices.add(vertex);
-    this.vertexToLeaderNode.set(vertex, this.leaderNode!);
+    const stack = [vertex];
 
-    const edges = graph.get(vertex)!;
+    for (; stack.length > 0; ) {
+      const v = stack[0];
+      const edges = graph.get(v)!;
 
-    for (const targetVertex of edges) {
-      if (!this.exploredVertices.has(targetVertex)) {
-        this.sizeOfComponent += 1;
-        this.dfs(graph, targetVertex);
+      if (this.exploredVertices.has(v) && edges.every((e) => this.exploredVertices.has(e))) {
+        this.exit(v);
+        stack.shift();
+
+        continue;
+      }
+
+      this.enter(v);
+      for (const targetVertex of edges) {
+        if (!this.exploredVertices.has(targetVertex)) {
+          stack.unshift(targetVertex);
+          break;
+        }
       }
     }
+  }
+  enter(vertex: number) {
+    this.exploredVertices.add(vertex);
+    this.vertexToLeaderNode.set(vertex, this.leaderNode!);
+  }
 
+  exit(vertex: number) {
     this.sizeOfComponent += 1;
     this.finishingTime += 1;
     this.vertexToFinishingTime.set(vertex, this.finishingTime);
@@ -100,7 +116,7 @@ export class DfsSccs {
     this.dfsLoop(this.vertices);
 
     return _.take(
-      this.componentSizes.sort((a, b) => a - b),
+      this.componentSizes.sort((a, b) => b - a),
       5,
     );
   }
