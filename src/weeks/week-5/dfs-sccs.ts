@@ -8,60 +8,24 @@ export class DfsSccs {
   private vertexToLeaderNode: Map<number, number> = new Map();
   private vertices: Map<number, number[]>;
   private reversedVertices: Map<number, number[]>;
-  private sizeOfComponent: number = 0;
-  private componentSizes: number[] = [];
   private n: number;
 
-  constructor(vertices: Map<number, number[]>) {
+  constructor(vertices: Map<number, number[]>, reversedVertices: Map<number, number[]>) {
     this.vertices = vertices;
-    this.reversedVertices = this.reverseVertices(new Map(vertices));
+    this.reversedVertices = reversedVertices;
     this.n = vertices.size;
-  }
-
-  getReversed() {
-    return this.reversedVertices;
-  }
-
-  reverseVertices(vertices: Map<number, number[]>) {
-    const passedVertices = new Map();
-
-    for (const vertex of vertices.keys()) {
-      const vertexEdges = vertices.get(vertex)!;
-
-      for (const targetVertex of vertexEdges) {
-        const targetVertexEdges = vertices.get(targetVertex)!;
-
-        const passed = passedVertices.get(targetVertex);
-        if (!passed || !passed.has(vertex)) {
-          vertices.set(targetVertex, [...targetVertexEdges, vertex]);
-
-          vertices.set(
-            vertex,
-            vertices.get(vertex)!.filter((v: number) => v !== targetVertex),
-          );
-        }
-      }
-
-      passedVertices.set(vertex, new Set(vertexEdges));
-    }
-
-    return vertices;
   }
 
   dfsLoop(graph: Map<number, number[]>) {
     this.finishingTime = 0;
     this.leaderNode = null;
-    this.componentSizes = [];
     this.exploredVertices.clear();
     this.vertexToLeaderNode.clear();
 
     for (let i = this.n; i > 0; i -= 1) {
       if (!this.exploredVertices.has(i)) {
-        this.sizeOfComponent = 0;
         this.leaderNode = i;
         this.dfs(graph, i);
-
-        this.componentSizes.push(this.sizeOfComponent);
       }
     }
   }
@@ -95,14 +59,12 @@ export class DfsSccs {
   }
 
   exit(vertex: number) {
-    this.sizeOfComponent += 1;
     this.finishingTime += 1;
     this.vertexToFinishingTime.set(vertex, this.finishingTime);
   }
 
   calculateTopFiveOfSccs() {
     this.dfsLoop(this.reversedVertices);
-
     // yeah, a lot of memory, i know
     const vertices = new Map(this.vertices);
 
@@ -116,7 +78,10 @@ export class DfsSccs {
     this.dfsLoop(this.vertices);
 
     return _.take(
-      this.componentSizes.sort((a, b) => b - a),
+      // this.componentSizes.sort((a, b) => b - a),
+      Object.values(_.countBy(Array.from(this.vertexToLeaderNode.entries()), ([key, value]) => value)).sort(
+        (a, b) => b - a,
+      ),
       5,
     );
   }
