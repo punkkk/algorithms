@@ -8,7 +8,8 @@ import {
   // quicksortFirstPartAssignment,
   // quicksortSecondPartAssignment,
   // quicksortThirdPartAssignment,
-  fifthWeekAssignment,
+  // fifthWeekAssignment,
+  sixthWeekAssignment,
 } from "./weeks";
 // import {SecondMax} from "./optional";
 
@@ -19,7 +20,7 @@ const main = async () => {
   // await quicksortSecondPartAssignment.do();
   // await quicksortThirdPartAssignment.do();
   // await fourthWeekAssignment.do();
-  await fifthWeekAssignment.do();
+  await sixthWeekAssignment.do();
 
   process.exit(0);
 };
