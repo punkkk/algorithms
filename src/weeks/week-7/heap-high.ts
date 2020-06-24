@@ -28,6 +28,10 @@ export class HeapHigh {
     }
   }
 
+  getMin() {
+    return this.heap[0];
+  }
+
   extractMin() {
     const minimum = this.heap.shift();
 

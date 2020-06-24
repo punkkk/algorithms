@@ -29,6 +29,10 @@ export class HeapLow {
     }
   }
 
+  getMax() {
+    return this.heap[0];
+  }
+
   extractMax() {
     const minimum = this.heap.shift();
 
@@ -60,9 +64,9 @@ export class HeapLow {
           break;
         }
       }
-
-      return minimum;
     }
+
+    return minimum;
   }
   toString() {
     return this.heap.join(",");
