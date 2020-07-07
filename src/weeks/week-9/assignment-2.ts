@@ -1,4 +1,4 @@
-import _ from "lodash";
+// import _ from "lodash";
 import fs from "fs";
 import * as path from "path";
 
@@ -8,35 +8,29 @@ import {Heap} from "./heap";
 
 const assignmentFn = () => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-9-2.txt"));
-  const adjacentList: Map<number, Edge[]> = new Map(
-    Object.entries(
-      _.mapValues(
-        _.groupBy(
-          assignmentFile
-            .toString()
-            .split("\n")
-            .filter((e) => e !== "")
-            .map((str) => {
-              return str.split(" ");
-            }),
-          (strArr) => strArr[0],
-        ),
-        // tslint:disable-next-line:no-shadowed-variable
-        (edges) => edges.map((edge) => Edge.fromRaw(_.takeRight(edge, 2))),
-      ),
-    ),
-  ) as any;
+  () => assignmentFile;
 
-  // const adjacentList = new Map([
-  //   [1, [new Edge(1, 2), new Edge(4, 3), new Edge(3, 4)]],
-  //   [2, [new Edge(1, 1), new Edge(2, 4)]],
-  //   [3, [new Edge(4, 1), new Edge(5, 4)]],
-  //   [4, [new Edge(3, 1), new Edge(2, 2), new Edge(5, 3)]],
-  // ]);
+  const adjacentList: Map<string, Edge[]> = new Map(new Array(500).fill(0).map((v, i) => [String(i + 1), []])) as any;
+
+  assignmentFile
+    .toString()
+    .split("\n")
+    .filter((e) => e !== "")
+    .map((str) => {
+      return str.split(" ");
+    })
+    .filter((numbers) => numbers.length > 2)
+    .forEach(([vertex, targetVertex, weight]) => {
+      const currentEdges = adjacentList.get(vertex)!;
+      const targetEdges = adjacentList.get(targetVertex)!;
+
+      adjacentList.set(vertex, [...currentEdges, new Edge(parseInt(weight, 10), targetVertex)]);
+      adjacentList.set(targetVertex, [...targetEdges, new Edge(parseInt(weight, 10), vertex)]);
+    });
+
   const edges = new Heap();
-  const vertices = Array.from(adjacentList.keys());
-  const startVertex = vertices[0];
-  const passedVertices = new Set([startVertex]);
+  const startVertex = "1";
+  const passedVertices: Set<string> = new Set([startVertex]);
   const minimumSpanningTreeEdges = [];
 
   edges.insertMany(adjacentList.get(startVertex)!);
@@ -49,11 +43,15 @@ const assignmentFn = () => {
     }
 
     passedVertices.add(minEdge.targetVertex);
-    edges.insertMany(adjacentList.get(minEdge.targetVertex)! || []);
-    minimumSpanningTreeEdges.push(minEdge);
+
+    const targetVertexEdges = adjacentList.get(minEdge.targetVertex)! || [];
+
+    edges.insertMany(targetVertexEdges);
+
+    minimumSpanningTreeEdges.push(minEdge.weight);
   }
 
-  return minimumSpanningTreeEdges.reduce((acc, edge) => acc + edge.weight, 0);
+  return minimumSpanningTreeEdges.reduce((acc, w) => acc + w, 0);
 };
 
 export const ninthWeekAssignmentSecond = new Assignment("PRIM ALGORITHM", assignmentFn);
