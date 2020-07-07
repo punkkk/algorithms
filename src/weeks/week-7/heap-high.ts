@@ -33,6 +33,10 @@ export class HeapHigh {
   }
 
   extractMin() {
+    if (this.heap.length === 0) {
+      throw new Error("Empty heap");
+    }
+
     const minimum = this.heap.shift();
 
     if (this.heap.length > 1) {
@@ -63,9 +67,9 @@ export class HeapHigh {
           break;
         }
       }
-
-      return minimum;
     }
+
+    return minimum;
   }
 
   toString() {

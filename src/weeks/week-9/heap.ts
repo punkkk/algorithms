@@ -1,17 +1,18 @@
-export class HeapLow {
-  private heap: number[] = [];
-  public size: number = 0;
+import {Edge} from "./edge";
+
+export class Heap {
+  private heap: Edge[] = [];
 
   getSize() {
     return this.heap.length;
   }
 
-  insertMany(values: number[]) {
+  insertMany(values: Edge[]) {
     values.forEach((v) => this.insert(v));
   }
 
-  insert(value: number) {
-    this.heap.push(value);
+  insert(edge: Edge) {
+    this.heap.push(edge);
 
     if (this.heap.length > 1) {
       let index = this.heap.length - 1;
@@ -19,7 +20,7 @@ export class HeapLow {
       for (;;) {
         const parentIndex = Math.floor(index / 2);
 
-        if (this.heap[parentIndex] < value) {
+        if (this.heap[parentIndex].weight > edge.weight) {
           [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
           index = parentIndex;
         } else {
@@ -29,16 +30,12 @@ export class HeapLow {
     }
   }
 
-  getMax() {
+  getMin() {
     return this.heap[0];
   }
 
-  extractMax() {
-    if (this.heap.length === 0) {
-      throw new Error("Empty heap");
-    }
-
-    const maximum = this.heap.shift();
+  extractMin() {
+    const minimum = this.heap.shift();
 
     if (this.heap.length > 1) {
       this.heap.unshift(this.heap.pop()!);
@@ -53,14 +50,14 @@ export class HeapLow {
 
         if (
           this.heap[rightSuccessorIndex] === undefined ||
-          this.heap[leftSuccessorIndex] >= this.heap[rightSuccessorIndex]
+          this.heap[leftSuccessorIndex].weight <= this.heap[rightSuccessorIndex].weight
         ) {
           swapWithIndex = leftSuccessorIndex;
         } else {
           swapWithIndex = rightSuccessorIndex;
         }
 
-        if (this.heap[swapWithIndex] > this.heap[index]) {
+        if (this.heap[swapWithIndex] && this.heap[swapWithIndex].weight < this.heap[index].weight) {
           [this.heap[swapWithIndex], this.heap[index]] = [this.heap[index], this.heap[swapWithIndex]];
 
           index = swapWithIndex;
@@ -70,9 +67,10 @@ export class HeapLow {
       }
     }
 
-    return maximum;
+    return minimum;
   }
+
   toString() {
-    return this.heap.join(",");
+    return this.heap.map((e) => e.weight).join(",");
   }
 }
