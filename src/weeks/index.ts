@@ -7,3 +7,4 @@ export * from "./week-6";
 export * from "./week-7";
 export * from "./week-8";
 export * from "./week-9";
+export * from "./week-10";
