@@ -36,11 +36,11 @@ const assignmentFn = () => {
 
   let spacing = 0;
 
-  for (const edge of _.reverse(sortedEdges)) {
+  for (const edge of sortedEdges) {
     if (
-      unionFind.find(edge.source) !== unionFind.find(edge.target) ||
-      unionFind.find(edge.source) === -1 ||
-      unionFind.find(edge.target) === -1
+      unionFind.find(edge.source) !== unionFind.find(edge.target) &&
+      unionFind.find(edge.source) !== edge.target &&
+      unionFind.find(edge.target) !== edge.source
     ) {
       spacing = edge.weight;
 
