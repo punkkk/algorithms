@@ -4,15 +4,19 @@ import * as path from "path";
 import {Assignment} from "../utils";
 
 const assignmentFn = () => {
-  const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-10-2.txt"));
+  const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/test.txt"));
 
-  const fileContent = assignmentFile
+  const [meta, ...edges] = assignmentFile
     .toString()
     .split("\n")
-    .filter((e) => e !== "");
+    .filter((e) => e !== "")
+    .map((v, i) => (i === 0 ? v : parseInt(v.replace(/ /g, ""), 2)));
+  const [rowsCount, sizeOfRow] = (meta as string).split(" ");
 
   return {
-    fileContent,
+    rowsCount,
+    sizeOfRow,
+    edge: edges[0],
   };
 };
 
