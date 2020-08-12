@@ -19,7 +19,7 @@ const generatePermutations = (from: number, to: number) => {
   for (;;) {
     const nextPermutation = generateNextPermutation(previousValue);
 
-    if (nextPermutation >= to) {
+    if (nextPermutation > to) {
       return result;
     }
 
@@ -30,7 +30,7 @@ const generatePermutations = (from: number, to: number) => {
 };
 
 const assignmentFn = () => {
-  const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/test.txt"));
+  const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-10-2.txt"));
 
   const [meta, ...vertices] = assignmentFile
     .toString()
@@ -73,13 +73,26 @@ const assignmentFn = () => {
     parseInt(new Array(parseInt(sizeOfRow, 10)).fill("1").join(""), 2),
   );
 
+  for (const verticesWithSamePosition of verticesByPosition.values()) {
+    const [toUnionWith] = verticesWithSamePosition;
+
+    [...distanceOneMasks, ...distanceTwoMasks].forEach((mask) => {
+      const verticesWithMaskDistance = verticesByPosition.get(toUnionWith.position ^ mask);
+
+      if (verticesWithMaskDistance) {
+        if (
+          unionFind.find(toUnionWith.index) !== unionFind.find(verticesWithMaskDistance[0].index) ||
+          unionFind.find(toUnionWith.index) === -1 ||
+          unionFind.find(verticesWithMaskDistance[0].index) === -1
+        ) {
+          unionFind.union(toUnionWith.index, verticesWithMaskDistance[0].index);
+        }
+      }
+    });
+  }
+
   return {
-    rowsCount,
-    sizeOfRow,
-    edge: vertices[0],
-    verticesByPosition,
-    distanceOneMasks,
-    distanceTwoMasks,
+    clusterCount: unionFind.size,
   };
 };
 
