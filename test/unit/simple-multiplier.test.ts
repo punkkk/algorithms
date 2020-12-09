@@ -6,15 +6,13 @@ import { Cache, ICache, SimpleSum, SimpleMultiplier } from "../../src/weeks/week
 describe("SimpleMultiplier", () => {
   describe("with cached value", () => {
     it("should return cached value", () => {
-      const cache = stubInstance(Cache);
+      const cache = <any>stubInstance(Cache);
       const simpleMultiplier = new SimpleMultiplier({
         cache: cache as ICache<string>,
         adder: new SimpleSum({ cache: new Cache({ cacheTime: 0 }) }),
       });
       const cachedProduct = casual.uuid;
 
-      // todo fix
-      // @ts-ignore
       cache.get.mockReturnValue(cachedProduct);
       const x = casual.uuid;
       const y = casual.uuid;
@@ -28,14 +26,12 @@ describe("SimpleMultiplier", () => {
 
   describe("without cached value", () => {
     it("should cache value", () => {
-      const cache = stubInstance(Cache);
+      const cache = <any>stubInstance(Cache);
       const simpleMultiplier = new SimpleMultiplier({
         cache: cache as ICache<string>,
         adder: new SimpleSum({ cache: new Cache({ cacheTime: 0 }) }),
       });
 
-      // todo fix
-      // @ts-ignore
       cache.get.mockReturnValue(null);
       const x = "10";
       const y = "10";

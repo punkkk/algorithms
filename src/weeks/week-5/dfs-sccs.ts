@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 export class DfsSccs {
-  private finishingTime: number = 0;
+  private finishingTime = 0;
   private leaderNode: number | null = null;
   private vertexToFinishingTime: Map<number, number> = new Map();
   private exploredVertices: Set<number> = new Set();

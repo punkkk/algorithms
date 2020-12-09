@@ -1,17 +1,16 @@
 import casual from "casual";
 
 import { stubInstance } from "./helpers";
-import { Cache, ICache, SimpleSum } from "../../src/weeks/week-1";
+import { Cache, SimpleSum } from "../../src/weeks/week-1";
 
 describe("SimpleSum", () => {
   describe("with cached value", () => {
     it("should return cached value", () => {
-      const cache = stubInstance(Cache);
-      const simpleSum = new SimpleSum({ cache: cache as ICache<string> });
+      // todo todo do
+      const cache = <any>stubInstance(Cache);
+      const simpleSum = new SimpleSum({ cache: cache });
       const cachedSum = casual.uuid;
 
-      // todo fix
-      // @ts-ignore
       cache.get.mockReturnValue(cachedSum);
       const x = casual.uuid;
       const y = casual.uuid;
@@ -24,14 +23,13 @@ describe("SimpleSum", () => {
   });
 
   describe("without cached value", () => {
-    const cache = stubInstance(Cache);
+    // todo todo do
+    const cache = <any>stubInstance(Cache);
     let simpleSum: SimpleSum;
 
     beforeEach(() => {
-      // todo fix
-      // @ts-ignore
       cache.get.mockReturnValue(null);
-      simpleSum = new SimpleSum({ cache: cache as ICache<string> });
+      simpleSum = new SimpleSum({ cache: cache });
     });
 
     it("cache setting", () => {

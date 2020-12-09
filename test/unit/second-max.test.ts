@@ -1,7 +1,7 @@
 import casual from "casual";
 import { SecondMax } from "../../src/optional";
 
-const getLength = (max: number = 100) => casual.integer(1, Math.floor(max / 2)) * 2;
+const getLength = (max = 100) => casual.integer(1, Math.floor(max / 2)) * 2;
 const randomExcept = (x: number, max: number): number => {
   const y = casual.integer(0, max - 1);
 

@@ -1,5 +1,6 @@
 import NodeCache from "node-cache";
 import Mock = jest.Mock;
+import Mocked = jest.Mocked;
 
 export const mockNodeCache = () => {
   jest.mock("node-cache");
@@ -9,8 +10,7 @@ export const mockNodeCache = () => {
     set: jest.fn(),
   };
 
-  // @ts-ignore
-  NodeCache.mockImplementation(() => mockedImplementation);
+  (<Mocked<any>>NodeCache).mockImplementation(() => mockedImplementation);
 
   return mockedImplementation;
 };

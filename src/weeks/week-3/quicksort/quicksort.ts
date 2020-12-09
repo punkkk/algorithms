@@ -6,7 +6,7 @@ interface IQuicksortDependencies {
 
 export class Quicksort {
   // todo make it clear
-  private comparisons: number = 0;
+  private comparisons = 0;
   private pivotStrategy: IPivotStrategy;
 
   constructor(dependencies: IQuicksortDependencies) {

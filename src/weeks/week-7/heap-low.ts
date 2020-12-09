@@ -1,6 +1,6 @@
 export class HeapLow {
   private heap: number[] = [];
-  public size: number = 0;
+  public size = 0;
 
   getSize() {
     return this.heap.length;
