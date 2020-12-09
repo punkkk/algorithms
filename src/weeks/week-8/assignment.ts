@@ -3,22 +3,22 @@ import * as path from "path";
 
 import { Assignment } from "../utils";
 
-const assignmentFn = () => {
+const assignmentFn = (testNumbers?: number[], t1: number = -10000, t2: number = 10000) => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-8.txt"));
 
   const numbers = new Set(
-    assignmentFile
-      .toString()
-      .split("\n")
-      .filter((e) => e !== "")
-      .map(Number),
+    testNumbers ||
+      assignmentFile
+        .toString()
+        .split("\n")
+        .filter((e) => e !== "")
+        .map(Number),
   );
   () => numbers;
 
-  // const numberss = new Set([-3, -1, 1, 2, 9, 11, 7, 6, 2]);
-
   let count = 0;
-  for (let t = -10000; t <= 10000; t += 1) {
+
+  for (let t = t1; t <= t2; t += 1) {
     for (const n of numbers) {
       if (numbers.has(t - n)) {
         count += 1;

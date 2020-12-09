@@ -1,4 +1,4 @@
 export * from "./quicksort";
-export * from "./quicksort-first-part-assignment";
-export * from "./quicksort-second-part-assignment";
-export * from "./quicksort-third-part-assignment";
+export * from "./assignment-1";
+export * from "./assignment-2";
+export * from "./assignment-3";

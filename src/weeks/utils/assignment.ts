@@ -1,6 +1,6 @@
 import { AssignmentLogger } from "./assignment-logger";
 
-export type IAssignment = () => any;
+export type IAssignment = (...args: any[]) => any;
 
 export class Assignment {
   private assignment: IAssignment;
@@ -11,12 +11,14 @@ export class Assignment {
     this.logger = new AssignmentLogger(name);
   }
 
-  async do() {
+  async do(...args: any[]) {
     this.logger.start();
 
-    const result = await this.assignment();
+    const result = await this.assignment(args);
     this.logger.result(result);
 
     this.logger.end();
+
+    return result;
   }
 }

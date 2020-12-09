@@ -19,9 +19,7 @@ const assignmentFn = () => {
 
   const dijkstra = new Dijkstra();
 
-  return [7, 37, 59, 82, 99, 115, 133, 165, 188, 197]
-    .map((v) => dijkstra.findShortestDistance(adjacencyList, 1, v)!)
-    .join(",");
+  return [7, 37, 59, 82, 99, 115, 133, 165, 188, 197].map((v) => dijkstra.findShortestDistance(adjacencyList, 1, v)!);
 };
 
 export const sixthWeekAssignment = new Assignment("Dijkstra algorithm", assignmentFn);

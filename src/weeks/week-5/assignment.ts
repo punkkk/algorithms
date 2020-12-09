@@ -49,7 +49,7 @@ const assignmentFn = () => {
   }
 
   const dfsSccs = new DfsSccs(vertices, reversedVertices);
-  return dfsSccs.calculateTopFiveOfSccs().join(",");
+  return dfsSccs.calculateTopFiveOfSccs();
 };
 
 export const fifthWeekAssignment = new Assignment("SCCs of the graph", assignmentFn);
