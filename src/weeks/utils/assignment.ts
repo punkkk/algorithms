@@ -1,4 +1,4 @@
-import {AssignmentLogger} from "./assignment-logger";
+import { AssignmentLogger } from "./assignment-logger";
 
 export type IAssignment = () => any;
 

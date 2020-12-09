@@ -1,4 +1,4 @@
-import {IPivotStrategy} from "./types";
+import { IPivotStrategy } from "./types";
 
 export class MedianOfThreePivotStrategy implements IPivotStrategy {
   get(array: number[]) {
@@ -9,7 +9,7 @@ export class MedianOfThreePivotStrategy implements IPivotStrategy {
     const arrayOfThree = [first, last, middle].sort((a, b) => a - b);
 
     return {
-      index: this.getPivotIndex(arrayOfThree, array, {first, middle}),
+      index: this.getPivotIndex(arrayOfThree, array, { first, middle }),
       value: arrayOfThree[1],
     };
   }
@@ -18,7 +18,7 @@ export class MedianOfThreePivotStrategy implements IPivotStrategy {
     return array.length % 2 === 0 ? array.length / 2 - 1 : Math.floor(array.length / 2);
   }
 
-  private getPivotIndex(arrayOfThree: number[], array: number[], {first, middle}: {first: number; middle: number}) {
+  private getPivotIndex(arrayOfThree: number[], array: number[], { first, middle }: { first: number; middle: number }) {
     const median = arrayOfThree[1];
 
     if (median === middle) {

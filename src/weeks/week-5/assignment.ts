@@ -2,8 +2,8 @@ import _ from "lodash";
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {DfsSccs} from "./dfs-sccs";
+import { Assignment } from "../utils";
+import { DfsSccs } from "./dfs-sccs";
 
 const assignmentFn = () => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-5.txt"));

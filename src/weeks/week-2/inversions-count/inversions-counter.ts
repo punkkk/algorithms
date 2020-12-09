@@ -1,24 +1,24 @@
 import _ from "lodash";
-import {IInversionsCounter} from "./types";
+import { IInversionsCounter } from "./types";
 
 export class InversionsCounter<T> implements IInversionsCounter<T> {
   public count(array: T[], length: number) {
-    const {inversionsCount} = this.subSort(array, length);
+    const { inversionsCount } = this.subSort(array, length);
 
     return inversionsCount;
   }
 
-  private subSort(array: T[], length: number): {result: T[]; inversionsCount: number} {
+  private subSort(array: T[], length: number): { result: T[]; inversionsCount: number } {
     if (length === 0 || length === 1) {
-      return {result: array, inversionsCount: 0};
+      return { result: array, inversionsCount: 0 };
     }
 
     const left = _.take(array, Math.floor(length / 2));
     const right = _.takeRight(array, Math.ceil(length / 2));
-    const {result: leftResult, inversionsCount: inversionsCountLeft} = this.subSort(left, left.length);
-    const {result: rightResult, inversionsCount: inversionsCountRight} = this.subSort(right, right.length);
+    const { result: leftResult, inversionsCount: inversionsCountLeft } = this.subSort(left, left.length);
+    const { result: rightResult, inversionsCount: inversionsCountRight } = this.subSort(right, right.length);
 
-    const {result, inversionsCount} = this.merge(leftResult, rightResult, length);
+    const { result, inversionsCount } = this.merge(leftResult, rightResult, length);
 
     return {
       result,
@@ -26,7 +26,7 @@ export class InversionsCounter<T> implements IInversionsCounter<T> {
     };
   }
 
-  private merge(a: T[], b: T[], n: number): {result: T[]; inversionsCount: number} {
+  private merge(a: T[], b: T[], n: number): { result: T[]; inversionsCount: number } {
     const result: T[] = [];
 
     let aIterator = 0;
@@ -47,6 +47,6 @@ export class InversionsCounter<T> implements IInversionsCounter<T> {
       }
     }
 
-    return {result, inversionsCount};
+    return { result, inversionsCount };
   }
 }

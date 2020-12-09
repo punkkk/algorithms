@@ -1,6 +1,6 @@
 import casual from "casual";
 
-import {MergeSort} from "../../src/sort";
+import { MergeSort } from "../../src/sort";
 
 describe("MergeSort", () => {
   it("Sort simple array", () => {

@@ -1,4 +1,4 @@
-import {IPivotStrategy} from "./types";
+import { IPivotStrategy } from "./types";
 
 interface IQuicksortDependencies {
   pivotStrategy: IPivotStrategy;
@@ -25,15 +25,13 @@ export class Quicksort {
       return array;
     }
 
-    const {value, index} = this.pivotStrategy.get(array);
+    const { value, index } = this.pivotStrategy.get(array);
 
     const [left, right] = this.partition(array, index, 0, array.length);
 
     this.comparisons += array.length - 1;
 
-    return this.doSort(left)
-      .concat([value])
-      .concat(this.doSort(right));
+    return this.doSort(left).concat([value]).concat(this.doSort(right));
   }
 
   partition(array: number[], pivotIndex: number, left: number, right: number) {

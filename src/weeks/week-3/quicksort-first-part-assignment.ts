@@ -1,13 +1,12 @@
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {Quicksort} from "./quicksort";
-import {FirstElementPivotStrategy} from "./quicksort/first-element-pivot-strategy";
+import { Assignment } from "../utils";
+import { Quicksort, FirstElementPivotStrategy } from "./quicksort";
 
 const assignmentFn = () => {
   const pivotStrategy = new FirstElementPivotStrategy();
-  const quicksort = new Quicksort({pivotStrategy});
+  const quicksort = new Quicksort({ pivotStrategy });
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-3.txt"));
 
   const array = assignmentFile

@@ -1,8 +1,8 @@
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {RandomContraction} from "./random-contraction";
+import { Assignment } from "../utils";
+import { RandomContraction } from "./random-contraction";
 
 const assignmentFn = () => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-4.txt"));

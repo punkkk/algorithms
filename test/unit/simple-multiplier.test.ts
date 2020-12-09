@@ -1,7 +1,7 @@
 import casual from "casual";
 
-import {stubInstance} from "./helpers";
-import {Cache, ICache, SimpleSum, SimpleMultiplier} from "../../src/weeks/week-1";
+import { stubInstance } from "./helpers";
+import { Cache, ICache, SimpleSum, SimpleMultiplier } from "../../src/weeks/week-1";
 
 describe("SimpleMultiplier", () => {
   describe("with cached value", () => {
@@ -9,7 +9,7 @@ describe("SimpleMultiplier", () => {
       const cache = stubInstance(Cache);
       const simpleMultiplier = new SimpleMultiplier({
         cache: cache as ICache<string>,
-        adder: new SimpleSum({cache: new Cache({cacheTime: 0})}),
+        adder: new SimpleSum({ cache: new Cache({ cacheTime: 0 }) }),
       });
       const cachedProduct = casual.uuid;
 
@@ -31,7 +31,7 @@ describe("SimpleMultiplier", () => {
       const cache = stubInstance(Cache);
       const simpleMultiplier = new SimpleMultiplier({
         cache: cache as ICache<string>,
-        adder: new SimpleSum({cache: new Cache({cacheTime: 0})}),
+        adder: new SimpleSum({ cache: new Cache({ cacheTime: 0 }) }),
       });
 
       // todo fix

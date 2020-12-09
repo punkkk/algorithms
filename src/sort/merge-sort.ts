@@ -1,13 +1,13 @@
-import _ from 'lodash';
+import _ from "lodash";
 
-import {ISorter} from "./types";
+import { ISorter } from "./types";
 
 export class MergeSort<T> implements ISorter<T> {
   public sort(array: T[], length: number) {
     return this.subSort(array, length);
   }
 
-  private subSort (array: T[], length: number): T[] {
+  private subSort(array: T[], length: number): T[] {
     if (length === 0 || length === 1) {
       return array;
     }
@@ -20,13 +20,13 @@ export class MergeSort<T> implements ISorter<T> {
     return this.merge(sortedLeft, sortedRight, length);
   }
 
-  private merge (a: T[], b: T[], n: number): T[] {
+  private merge(a: T[], b: T[], n: number): T[] {
     const result: T[] = [];
 
     let aIterator = 0;
     let bIterator = 0;
 
-    for (let k = 0; k < n; k ++) {
+    for (let k = 0; k < n; k++) {
       const aElement = a[aIterator];
       const bElement = b[bIterator];
 

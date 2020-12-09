@@ -1,10 +1,9 @@
-// import _ from "lodash";
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {Edge} from "./edge";
-import {Heap} from "./heap";
+import { Assignment } from "../utils";
+import { Edge } from "./edge";
+import { Heap } from "./heap";
 
 const assignmentFn = () => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-9-2.txt"));

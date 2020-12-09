@@ -1,7 +1,7 @@
 import Constructable = jest.Constructable;
 import MockedFunction = jest.MockedFunction;
 
-export type IMocked<T extends {prototype: any}> = {
+export type IMocked<T extends { prototype: any }> = {
   [P in keyof T["prototype"]]: T[P] extends (...args: any) => any ? MockedFunction<T[P]> : T[P];
 };
 

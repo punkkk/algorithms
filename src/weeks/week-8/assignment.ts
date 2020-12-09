@@ -1,7 +1,7 @@
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
+import { Assignment } from "../utils";
 
 const assignmentFn = () => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-8.txt"));

@@ -2,9 +2,9 @@
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {UnionFind} from "./union-find";
-import {Vertex} from "./vertex";
+import { Assignment } from "../utils";
+import { UnionFind } from "./union-find";
+import { Vertex } from "./vertex";
 
 const generateNextPermutation = (value: number) => {
   const t = (value | (value - 1)) + 1;

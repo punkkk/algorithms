@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {Edge} from "./edge";
+import { Edge } from "./edge";
 
 export class Dijkstra {
   private passedVertices: Set<number> = new Set();

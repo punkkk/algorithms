@@ -1,5 +1,5 @@
-import {IAdder, IMultiplier} from "./types";
-import {ICache} from "../cache";
+import { IAdder, IMultiplier } from "./types";
+import { ICache } from "../cache";
 
 export interface ISimpleMultiplierDependencies {
   cache: ICache<string>;

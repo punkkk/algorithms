@@ -2,8 +2,8 @@ import _ from "lodash";
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {Job} from "./job";
+import { Assignment } from "../utils";
+import { Job } from "./job";
 
 const byDifference = (j1: Job, j2: Job) => {
   const j1Diff = j1.weight - j1.length;
@@ -33,7 +33,7 @@ const getWeightedCompletionTime = (jobs: Job[]) => {
         sum: acc.sum += newCompletionTime * job.weight,
       };
     },
-    {completionTime: 0, sum: 0},
+    { completionTime: 0, sum: 0 },
   ).sum;
 };
 

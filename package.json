@@ -10,7 +10,8 @@
     "start": "node build/app.js",
     "start:watch": "nodemon",
     "lint": "tslint -c tslint.json -p tsconfig.json -t codeFrame '{src,test}/**/*.ts'",
-    "test": "jest --env=node --colors --coverage test"
+    "test": "jest --env=node --colors --coverage test",
+    "format": "prettier --write '**/*.ts'"
   },
   "keywords": [
     "template",

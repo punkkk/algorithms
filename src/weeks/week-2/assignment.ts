@@ -1,8 +1,8 @@
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {InversionsCounter} from "./inversions-count";
+import { Assignment } from "../utils";
+import { InversionsCounter } from "./inversions-count";
 
 const assignmentFn = () => {
   const inversion = new InversionsCounter<number>();

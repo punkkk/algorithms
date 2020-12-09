@@ -1,5 +1,5 @@
-import {IAdder} from "./types";
-import {ICache} from "../cache";
+import { IAdder } from "./types";
+import { ICache } from "../cache";
 
 export interface ISimpleSumDependencies {
   cache: ICache<string>;
@@ -21,14 +21,8 @@ export class SimpleSum implements IAdder {
     }
 
     const result = [];
-    const reversedA = x
-      .split("")
-      .reverse()
-      .join("");
-    const reversedB = y
-      .split("")
-      .reverse()
-      .join("");
+    const reversedA = x.split("").reverse().join("");
+    const reversedB = y.split("").reverse().join("");
 
     let co = 0;
     const longest = reversedA.length > reversedB.length ? reversedA.length : reversedB.length;

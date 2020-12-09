@@ -1,4 +1,4 @@
-import {IPivotStrategy} from "./types";
+import { IPivotStrategy } from "./types";
 
 export class LastElementPivotStrategy implements IPivotStrategy {
   get(array: number[]) {

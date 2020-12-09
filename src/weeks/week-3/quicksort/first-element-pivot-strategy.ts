@@ -1,4 +1,4 @@
-import {IPivotStrategy} from "./types";
+import { IPivotStrategy } from "./types";
 
 export class FirstElementPivotStrategy implements IPivotStrategy {
   get(array: number[]) {

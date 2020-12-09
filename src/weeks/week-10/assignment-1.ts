@@ -1,10 +1,9 @@
-import _ from "lodash";
 import fs from "fs";
 import * as path from "path";
 
-import {Assignment} from "../utils";
-import {Edge} from "./edge";
-import {UnionFind} from "./union-find";
+import { Assignment } from "../utils";
+import { Edge } from "./edge";
+import { UnionFind } from "./union-find";
 
 const assignmentFn = () => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-10-1.txt"));

@@ -1,9 +1,9 @@
 import casual from "casual";
 
-import {mockNodeCache} from "./mocks";
+import { mockNodeCache } from "./mocks";
 
 import Mock = jest.Mock;
-import {Cache} from "../../src/weeks/week-1/cache";
+import { Cache } from "../../src/weeks/week-1/cache";
 
 jest.mock("node-cache");
 
@@ -14,11 +14,11 @@ describe("Cache", () => {
   let setMock: Mock;
 
   beforeEach(() => {
-    ({get: getMock, set: setMock} = mockNodeCache());
+    ({ get: getMock, set: setMock } = mockNodeCache());
   });
 
   it("get", () => {
-    const cache = new Cache<number>({cacheTime: DEFAULT_CACHE_TIME});
+    const cache = new Cache<number>({ cacheTime: DEFAULT_CACHE_TIME });
     const key = casual.uuid;
     const value = casual.uuid;
 
@@ -30,7 +30,7 @@ describe("Cache", () => {
   });
 
   it("set", () => {
-    const cache = new Cache<number>({cacheTime: DEFAULT_CACHE_TIME});
+    const cache = new Cache<number>({ cacheTime: DEFAULT_CACHE_TIME });
     const key = casual.uuid;
     const value = casual.integer(0, Number.MAX_SAFE_INTEGER);
     const expectedResult = casual.boolean;

@@ -1,4 +1,4 @@
-import {Edge} from "./edge";
+import { Edge } from "./edge";
 
 export class Heap {
   private heap: Edge[] = [];

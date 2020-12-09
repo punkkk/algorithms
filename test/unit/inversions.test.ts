@@ -1,4 +1,4 @@
-import {InversionsCounter} from "../../src/weeks/week-2/inversions-count";
+import { InversionsCounter } from "../../src/weeks/week-2/inversions-count";
 
 describe("Inversions", () => {
   it("count for reversed sorted array", () => {

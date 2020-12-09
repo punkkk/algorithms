@@ -1,2 +1,2 @@
-export * from './merge-sort';
-export * from './types';
+export * from "./merge-sort";
+export * from "./types";
