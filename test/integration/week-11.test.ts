@@ -1,4 +1,4 @@
-import { eleventhWeekAssignmentFirst } from "../../src/weeks";
+import { eleventhWeekAssignmentFirst, eleventhWeekAssignmentSecond } from "../../src/weeks";
 
 describe("Week 11", () => {
   describe("Assignment 1", () => {
@@ -21,6 +21,20 @@ describe("Week 11", () => {
 
         expect(result).toHaveProperty("minLength", 9);
       });
+    });
+  });
+
+  describe("Assignment 2", () => {
+    it("Mock set data", async () => {
+      const result = await eleventhWeekAssignmentSecond.do([4, 1, 4, 5, 4]);
+
+      expect(result).toHaveProperty("bitmap", [0, 1, 0, 1]);
+    });
+
+    it("Assignment data", async () => {
+      const result = await eleventhWeekAssignmentSecond.do();
+
+      expect(result).toHaveProperty("bitmap", [0, 1, 0, 1]);
     });
   });
 });
