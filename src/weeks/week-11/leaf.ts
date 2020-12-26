@@ -32,7 +32,7 @@ export class Leaf {
 
   maxDepth(): number {
     if (this.right == null && this.left == null) {
-      return 1;
+      return 0;
     }
 
     return 1 + Math.max(this.left?.maxDepth() || 0, this.right?.maxDepth() || 0);
@@ -40,7 +40,7 @@ export class Leaf {
 
   minDepth(): number {
     if (this.right == null && this.left == null) {
-      return 1;
+      return 0;
     }
 
     return 1 + Math.min(this.left?.minDepth() || 0, this.right?.minDepth() || 0);

@@ -43,9 +43,8 @@ const assignmentFn = (input: number[]) => {
   root.right.unmerge();
 
   return {
-    // -1 due to the fact I count the root level
-    maxLength: root.maxDepth() - 1,
-    minLength: root.minDepth() - 1,
+    maxLength: root.maxDepth(),
+    minLength: root.minDepth(),
   };
 };
 
