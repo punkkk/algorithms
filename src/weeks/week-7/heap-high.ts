@@ -79,4 +79,8 @@ export class HeapHigh<T extends INumber> {
   toString() {
     return this.heap.join(",");
   }
+
+  toArray() {
+    return this.heap;
+  }
 }
