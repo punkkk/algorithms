@@ -14,29 +14,27 @@ const assignmentFn = (input: number[]) => {
       .filter((e) => e !== "")
       .map((v) => parseInt(v, 10));
 
-  // not in use just to get rid of vertices[i - 1] thing
-  verticesWeight.unshift(0);
-
-  const A = new Array(verticesCount).fill(0);
-  A[1] = verticesWeight[1];
+  const A = new Array(verticesCount + 1).fill(0);
+  A[1] = verticesWeight[0];
 
   for (let i = 2; i < A.length; i += 1) {
-    A[i] = Math.max(A[i - 1], A[i - 2] + verticesWeight[i]);
+    A[i] = Math.max(A[i - 1], A[i - 2] + verticesWeight[i - 1]);
   }
-  const set = new Set();
+
+  const maxWeightIndependentSet = new Set();
 
   for (let i = A.length - 1; i > 0; ) {
-    if (A[i - 1] >= A[i - 2] + verticesWeight[i]) {
+    if (A[i - 1] >= A[i - 2] + verticesWeight[i - 1]) {
       i -= 1;
     } else {
-      set.add(i);
+      maxWeightIndependentSet.add(i - 1);
       i -= 2;
     }
   }
 
   return {
-    bitmap: new Array(verticesCount).fill(0).map((v, i) => (set.has(i) ? 1 : 0)),
+    bitmap: [1, 2, 3, 4, 17, 117, 517, 997].map((v) => (maxWeightIndependentSet.has(v - 1) ? 1 : 0)).join(""),
   };
 };
 
-export const eleventhWeekAssignmentSecond = new Assignment("HUFFMAN", assignmentFn);
+export const eleventhWeekAssignmentSecond = new Assignment("Maximum-weight independent set", assignmentFn);

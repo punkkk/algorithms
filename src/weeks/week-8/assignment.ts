@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { Assignment } from "../utils";
 
-const assignmentFn = (testNumbers?: number[], t1: number = -10000, t2: number = 10000) => {
+const assignmentFn = (testNumbers?: number[], t1 = -10000, t2 = 10000) => {
   const assignmentFile = fs.readFileSync(path.join(__dirname, "../../misc/assignment-8.txt"));
 
   const numbers = new Set(

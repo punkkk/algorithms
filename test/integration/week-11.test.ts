@@ -25,16 +25,10 @@ describe("Week 11", () => {
   });
 
   describe("Assignment 2", () => {
-    it("Mock set data", async () => {
-      const result = await eleventhWeekAssignmentSecond.do([4, 1, 4, 5, 4]);
-
-      expect(result).toHaveProperty("bitmap", [0, 1, 0, 1]);
-    });
-
     it("Assignment data", async () => {
       const result = await eleventhWeekAssignmentSecond.do();
 
-      expect(result).toHaveProperty("bitmap", [0, 1, 0, 1]);
+      expect(result).toHaveProperty("bitmap", "10100110");
     });
   });
 });
