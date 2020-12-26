@@ -42,9 +42,9 @@ const assignmentFn = () => {
     }
 
     if (heapLow.getSize() >= heapHigh.getSize()) {
-      median = heapLow.getMax()!;
+      median = heapLow.getMax()! as number;
     } else {
-      median = heapHigh.getMin()!;
+      median = heapHigh.getMin()! as number;
     }
 
     medians.push(median);

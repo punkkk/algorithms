@@ -1,16 +1,20 @@
-export class HeapLow {
-  private heap: number[] = [];
+interface INumber {
+  valueOf: () => number;
+}
+
+export class HeapLow<T extends INumber> {
+  private heap: T[] = [];
   public size = 0;
 
   getSize() {
     return this.heap.length;
   }
 
-  insertMany(values: number[]) {
+  insertMany(values: T[]) {
     values.forEach((v) => this.insert(v));
   }
 
-  insert(value: number) {
+  insert(value: T) {
     this.heap.push(value);
 
     if (this.heap.length > 1) {
@@ -19,7 +23,7 @@ export class HeapLow {
       for (;;) {
         const parentIndex = Math.floor(index / 2);
 
-        if (this.heap[parentIndex] < value) {
+        if (this.heap[parentIndex].valueOf() < value.valueOf()) {
           [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
           index = parentIndex;
         } else {
