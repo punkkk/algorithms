@@ -14,7 +14,7 @@ export class Assignment {
   async do(...args: any[]) {
     this.logger.start();
 
-    const result = await this.assignment(args);
+    const result = await this.assignment(...args);
     this.logger.result(result);
 
     this.logger.end();
