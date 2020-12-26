@@ -6,7 +6,7 @@ describe("Week 11", () => {
       const result = await eleventhWeekAssignmentFirst.do([5, 32, 25, 20, 18, 5]);
 
       expect(result).toHaveProperty("maxLength", 3);
-      expect(result).toHaveProperty("minLength", 1);
+      expect(result).toHaveProperty("minLength", 2);
     });
 
     describe("Assignment data", () => {
@@ -19,7 +19,7 @@ describe("Week 11", () => {
       it("min length", async () => {
         const result = await eleventhWeekAssignmentFirst.do();
 
-        expect(result).toHaveProperty("minLength", 19);
+        expect(result).toHaveProperty("minLength", 9);
       });
     });
   });

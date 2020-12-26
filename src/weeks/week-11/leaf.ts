@@ -39,6 +39,10 @@ export class Leaf {
   }
 
   minDepth(): number {
-    return 999;
+    if (this.right == null && this.left == null) {
+      return 1;
+    }
+
+    return 1 + Math.min(this.left?.minDepth() || 0, this.right?.minDepth() || 0);
   }
 }
