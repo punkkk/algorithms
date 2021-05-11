@@ -47,7 +47,7 @@
   "dependencies": {
     "casual": "1.6.2",
     "jest": "26.2.2",
-    "lodash": "4.17.19",
+    "lodash": "4.17.21",
     "node-cache": "5.1.2",
     "source-map-support": "0.5.19"
   },
